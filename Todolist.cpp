@@ -32,6 +32,19 @@ struct task{
             year+=2000;//for year 2018 user can input 2018 or only 18. it will be converted here.
         }
     }
+    bool operator <(const task &tsk2)const{
+        if(year==tsk2.year){
+            if(month==tsk2.month){
+                return date<tsk2.date;
+            }
+            else {
+                return month<tsk2.month;
+            }
+        }
+        else {
+            return year<tsk2.year;
+        }
+    }
 };
 
 int main(){
