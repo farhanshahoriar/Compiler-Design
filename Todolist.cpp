@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <algorithm>
 #include <vector>
+#include "constants.h"
 
 using std::string;
 using std::cin;
@@ -49,7 +50,7 @@ struct task{
 
 class alltask{
     std::vector<task> tasklist;
-
+    public:
     void addtask(){
         task temp;
         temp.inputtask();
@@ -89,18 +90,38 @@ class alltask{
         cout<<"\n\nEnter 'm' to go main menu or 'r' to remove this note\n";
         do{
             cin>>chk;
-            if(chk=="r"){
+            if(chk==Remove){
                 tasklist.erase(tasklist.begin()+taskno-1);
                 break;
             }
-        }while(chk!="m");
+        }while(chk!=backmain);
 
         system("clear");//Clear display
     }
 
-};
+}taskall;
 
 int main(){
+    int option;
+    while(true){
+        puts("Chose an option:");
+        puts("1.Add a new task\n2.See all task\n3.Exit");
+        cin>>option;
+        system("clear");//Clear display
+        if(option>3||option<1)puts("\nInvalid Option. Try again\n\n");
+        //we will use separate function for each option.
+        switch(option){
+            case 1:
+                taskall.addtask();
+                break;
+            case 2:
+                taskall.taskoutput();
+                break;
+            case 3:
+                return 0;
+                break;
+        }
+    }
 
     return 0;
 }
