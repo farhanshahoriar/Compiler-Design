@@ -6,7 +6,7 @@
 using std::string;
 using std::cin;
 using std::cout;
-
+using std::endl;
 struct task{
     std::string taskname,info;
     int date,month,year;
@@ -34,6 +34,7 @@ struct task{
     bool operator <(const task &tsk2)const{
         if(year==tsk2.year){
             if(month==tsk2.month){
+                //if both month and year same
                 return date<tsk2.date;
             }
             else {
@@ -55,6 +56,48 @@ class alltask{
         tasklist.push_back(temp);
         system("clear");//Clear display
     }
+
+    void taskoutput(){
+        //this is output fucntion to print task info
+
+        int taskno;
+        string chk;
+        if(tasklist.size()==0){
+            cout<<"Task list is empty!"<<endl;
+            return;//We can not show the list as it is empty.
+        }
+
+        //Soring the task according to date of task.
+        sort(tasklist.begin(),tasklist.end());
+
+        cout<<"To open a task Enter the task number form the list below:"<<endl;
+        cout<<"Task No\tTask Name"<<endl;
+
+        //Here we will store everything in vector as 0 based index,but user will see as 1 based index
+        //So we have to substruct or add 1 sometimes from index.
+
+        for(int i=0;i<tasklist.size();i++){
+            cout<<i+1<<".\t"<<tasklist[i].taskname<<endl;
+        }
+        cin>>taskno;
+        system("clear");//Clear display
+
+        cout<<"Task name: "<<tasklist[taskno-1].taskname<<endl;
+        cout<<"Info:\n"<<tasklist[taskno-1].info<<endl;
+        cout<<"\nDate: "<<tasklist[taskno-1].date<<"/"<<tasklist[taskno-1].month<<"/"<<tasklist[taskno-1].year<<endl;
+
+        cout<<"\n\nEnter 'm' to go main menu or 'r' to remove this note\n";
+        do{
+            cin>>chk;
+            if(chk=="r"){
+                tasklist.erase(tasklist.begin()+taskno-1);
+                break;
+            }
+        }while(chk!="m");
+
+        system("clear");//Clear display
+    }
+
 };
 
 int main(){
