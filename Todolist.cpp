@@ -2,16 +2,25 @@
 #include <stdio.h>
 #include <algorithm>
 #include <vector>
+#include <fstream>
 #include "constants.h"
 
 using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
+
+std::ofstream fout;
+std::ifstream fin;
 struct task{
     std::string taskname,info;
     int date,month,year;
-
+    void fileout(){
+        fout<<taskname<<" "<<info<<" "<<date<<" "<<month<<" "<<year<<"\n";
+    }
+    void filein(){
+        fin>>taskname>>info>>date>>month>>year;
+    }
     void inputtask(){
         //we will input task details here.
 
@@ -49,7 +58,7 @@ struct task{
 };
 
 class alltask{
-    std::vector<task> tasklist;
+    std::vector<task> tasklist,list2;
     public:
     void addtask(){
         task temp;
@@ -98,11 +107,23 @@ class alltask{
 
         system("clear");//Clear display
     }
+    void writefile(){
+        // Write out a list to a disk file
+        fout.open("data.txt");
+        fout<<tasklist.size()<<"\n";
+        for(int i=0;i<tasklist.size();i++){
+            tasklist[i].fileout();
+        }
+        fout.close();
+    }
+
 
 }taskall;
 
+
 int main(){
     int option;
+    taskall.readfile();
     while(true){
         puts("Chose an option:");
         puts("1.Add a new task\n2.See all task\n3.Exit");
@@ -118,6 +139,7 @@ int main(){
                 taskall.taskoutput();
                 break;
             case 3:
+                taskall.writefile();
                 return 0;
                 break;
         }
