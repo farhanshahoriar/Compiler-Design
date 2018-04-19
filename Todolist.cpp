@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdio.h>
+#include <algorithm>
 #include <vector>
 
 using std::string;
@@ -31,9 +32,12 @@ struct task{
 
         //Need to check if input format,added by user is correct. will be done in next update
         if(year<100){
-            year+=2000;//for year 2018 user can input 2018 or only 18. it will be converted here.
+            year+=2000;
+            //for year 2018 user can input 2018 or only 18. it will be converted here.
         }
     }
+
+    //overloading operator to sort the task according to time.
     bool operator <(const task &tsk2)const{
         if(year==tsk2.year){
             if(month==tsk2.month){
@@ -51,7 +55,12 @@ struct task{
 
 class alltask{
     std::vector<task> tasklist;
-
+    void addtask(){
+        task temp;
+        temp.inputtask();
+        tasklist.push_back(temp);
+        system("clear");
+    }
 };
 
 int main(){
