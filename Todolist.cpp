@@ -1,5 +1,7 @@
 #include <iostream>
 #include <stdio.h>
+#include <vector>
+
 using std::string;
 using std::cin;
 using std::cout;
@@ -45,6 +47,11 @@ struct task{
             return year<tsk2.year;
         }
     }
+};
+
+class alltask{
+    std::vector<task> tasklist;
+
 };
 
 int main(){
