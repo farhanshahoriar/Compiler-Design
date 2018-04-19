@@ -84,6 +84,17 @@ class alltask{
         cout<<"Task name: "<<tasklist[taskno-1].taskname<<endl;
         cout<<"Info:\n"<<tasklist[taskno-1].info<<endl;
         cout<<"\nDate: "<<tasklist[taskno-1].date<<"/"<<tasklist[taskno-1].month<<"/"<<tasklist[taskno-1].year<<endl;
+
+        cout<<"\n\nEnter 'm' to go main menu or 'r' to remove this note\n";
+        do{
+            cin>>chk;
+            if(chk=="r"){
+                tasklist.erase(tasklist.begin()+taskno-1);
+                break;
+            }
+        }while(chk!="m");
+
+        system("clear");//Clear display
     }
 
 };
