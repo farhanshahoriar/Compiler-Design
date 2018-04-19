@@ -10,14 +10,7 @@ using std::cout;
 struct task{
     std::string taskname,info;
     int date,month,year;
-    task();
-    task(std::string name,std::string tinfo,int _date,int _month, int _year){
-        taskname=name;
-        info=tinfo;
-        date=_date;
-        month=_month;
-        year=_year;
-    }
+
     void inputtask(){
         //we will input task details here.
 
@@ -55,11 +48,12 @@ struct task{
 
 class alltask{
     std::vector<task> tasklist;
+
     void addtask(){
         task temp;
         temp.inputtask();
         tasklist.push_back(temp);
-        system("clear");
+        system("clear");//Clear display
     }
 };
 
