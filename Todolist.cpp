@@ -34,6 +34,7 @@ struct task{
     bool operator <(const task &tsk2)const{
         if(year==tsk2.year){
             if(month==tsk2.month){
+                //if both month and year same
                 return date<tsk2.date;
             }
             else {
