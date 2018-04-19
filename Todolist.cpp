@@ -116,7 +116,17 @@ class alltask{
         }
         fout.close();
     }
-
+    void readfile(){
+        int sizein;
+        fin.open("data.txt");
+        fin>>sizein;
+        task temp;
+        for(int i=0;i<sizein;i++){
+            temp.filein();
+            tasklist.push_back(temp);
+        }
+        fin.close();
+    }
 
 }taskall;
 
