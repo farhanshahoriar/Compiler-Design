@@ -7,6 +7,7 @@ int vld(char *s){
     if(isdigit(s[0])){
         int i,ln=strlen(s);
         for(i=0;i<ln;i++)if(!isdigit(s[i]))return 0;//something like 0121abcd
+
         return 1;//number
     }
     else return 1;//variable name
@@ -28,9 +29,11 @@ int repl(int pos){
     if(mtc(pos,"(E)")||mtc(pos,"EAE")){
         p=pos;
         do{
+            p++;
             ex[p]=ex[p+2];//left shifting 2 char;
         }while(ex[p]);//while last char is not null
         ex[pos]='E';
+        ln-=2;
         return 1;
     }
     else return 0;//not found
@@ -39,7 +42,7 @@ int main()
 {
     int i,j,a,b,ts,f=1,cn=0;
     char s[100];
-    freopen("test.txt","r",stdin);
+    //freopen("test.txt","r",stdin);
     // sample input: 0509 * ( 2 + val ) * num1 + 32235
     // input must be space saparated
     // we will use bottom up apporoch here
@@ -56,8 +59,17 @@ int main()
             return 0;
         }
     }
+    ex[ln]='\0';
 
-    puts("Valid Expression");
+    for(i=0;i<ln;i++){
+        //puts(ex);
+        if(repl(i))i=-1;
+        //printf("%d %d\n",i,ln);
+    }
+
+    //puts(ex);
+    if(ln==1) puts("Valid Expression");
+    else puts("Invalid Expression");
 
     return 0;
 }
